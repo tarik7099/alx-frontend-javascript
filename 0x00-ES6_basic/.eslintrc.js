@@ -1,35 +1,28 @@
-module.exports = {
-  env: {
-    browser: false,
-    es6: true,
-    jest: true,
+import { ESLint } from "eslint";
+
+export default [
+  {
+    files: ["**/*.js", "**/*.jsx"],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+    },
+    env: {
+      browser: true,
+      node: true,
+    },
+    plugins: {
+      react: ESLint.Plugin.react,
+    },
+    rules: {
+      semi: ["error", "always"],
+      quotes: ["error", "double"],
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
   },
-  extends: [
-    'airbnb-base',
-    'plugin:jest/all',
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-  plugins: ['jest'],
-  rules: {
-    'no-console': 'off',
-    'no-shadow': 'off',
-    'no-restricted-syntax': [
-      'error',
-      'LabeledStatement',
-      'WithStatement',
-    ],
-  },
-  overrides:[
-    {
-      files: ['*.js'],
-      excludedFiles: 'babel.config.js',
-    }
-  ]
-};
+];
+
